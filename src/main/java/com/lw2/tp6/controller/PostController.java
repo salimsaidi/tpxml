@@ -17,7 +17,7 @@ public class PostController {
 
 	@RequestMapping(value="add/", method=RequestMethod.POST)
 	@ResponseBody
-	public Stb resumeId(@RequestBody Stb stb,BindingResult result, SessionStatus status) {
+	public Stb add(@RequestBody Stb stb,BindingResult result, SessionStatus status) {
 		return stb;
 	}
 }

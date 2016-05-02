@@ -1,7 +1,16 @@
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\controller\STBController.java
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\config\AppConfig.java
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\ServletInitializer.java
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\model\Stb.java
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\controller\PostController.java
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\model\StbList.java
-D:\eclipse\workspace\tp6\src\main\java\com\lw2\tp6\controller\HomeController.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\Fonctionnalite.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\controller\HomeController.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\controller\STBController.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\package-info.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\Contact.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\GenderType.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\Equipe.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\ObjectFactory.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\AdrType.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\config\AppConfig.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\StbList.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\persistence\HibernateUtil.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\ServletInitializer.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\controller\PostController.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\Stb.java
+C:\Users\Qette Omar\git\tpxml\src\main\java\com\lw2\tp6\model\Client.java

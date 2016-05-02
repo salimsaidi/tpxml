@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://univ.fr/stb" xmlns="http://univ.fr/stb">
+
+<xs:element name="titre" type="xs:string"/>
+<xs:element name="version" type="xs:string" default="0.1"/>
+<xs:element name="date" type="xs:date"/>
+<xs:element name="description" type="xs:string"/>
+<xs:element name="priorite">
+<xs:simpleType>
+      <xs:restriction base="xs:integer">
+         <xs:minInclusive value="1"/>
+         <xs:maxInclusive value="10"/>
+      </xs:restriction>
+   </xs:simpleType>
+ </xs:element>
+
+<xs:complexType name="adrType">
+<xs:sequence>
+	<xs:element name="adresse" type="xs:string"></xs:element>
+	<xs:element name="ville" type="xs:string"></xs:element>
+	<xs:element name="codePostal" type="xs:int"></xs:element>
+	<xs:element name="Pays" type="xs:string"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<!--<xs:simpleType name="stringGender">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="M."/>
+      <xs:enumeration value="Mme"/>
+    </xs:restriction>
+</xs:simpleType>
+  
+<xs:complexType name="genderType">
+  <xs:simpleContent>
+    <xs:extensims:format-date(date, 'MM dd')on base="xs:string">
+      <xs:attribute name="gender" type="stringGender" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>-->
+
+<xs:complexType name="genderType">
+  <xs:simpleContent>
+    <xs:extension base="xs:string">
+      <xs:attribute name="gender" type="xs:boolean" use="required"/>
+    </xs:extension>
+  </xs:simpleContent>
+</xs:complexType>
+
+
+<xs:element name="contact">
+<xs:complexType>
+	<xs:all>
+		<xs:element name="nom" type="xs:string"/>
+		<xs:element name="prenom" type="xs:string"/>
+		<xs:element name="adress" type="adrType"/>
+	</xs:all>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="client">
+<xs:complexType>
+	<xs:all>
+		<xs:element name="entite" type="xs:string"/>
+		<xs:element ref="contact"/>
+	</xs:all>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="equipe">
+<xs:complexType>
+	<xs:all>
+		<xs:element name="nom" type="genderType"/>
+		<xs:element name="prenom" type="xs:string"/>
+	</xs:all>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="fonctionnalite">
+<xs:complexType>
+	<xs:sequence>
+		<xs:element name="priorite" type="xs:int"/>
+		<xs:element name="description" type="xs:string"/>
+		<xs:element name="exigence" minOccurs="2" maxOccurs="unbounded">
+		<xs:complexType>
+		<xs:all>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element ref="priorite"/>
+		</xs:all>
+		<xs:attribute name="identifiant" type="xs:string" use="required"/>
+		</xs:complexType>
+		</xs:element>
+	</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="commentaire" type="xs:string"></xs:element>
+
+<xs:element name="stb">
+<xs:complexType>
+	<xs:sequence>
+		<xs:element ref="titre"/>
+		<xs:element ref="version"/>
+		<xs:element ref="date"/>
+		<xs:element ref="description"/>
+		<xs:element ref="client" minOccurs="1" maxOccurs="1"/>
+		<xs:element ref="equipe" minOccurs="2" maxOccurs="7"/>
+		<xs:element ref="fonctionnalite" minOccurs="1" maxOccurs="unbounded"/>
+		<xs:element ref="commentaire" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+</xs:element>
+
+
+</xs:schema>

@@ -1,50 +1,91 @@
 package com.lw2.tp6.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+
+import com.lw2.tp6.model.AdrType;
+import com.lw2.tp6.model.Client;
+import com.lw2.tp6.model.Contact;
+import com.lw2.tp6.model.Equipe;
+import com.lw2.tp6.model.Fonctionnalite;
+import com.lw2.tp6.model.GenderType;
+import com.lw2.tp6.model.Stb;
+import com.lw2.tp6.persistence.HibernateUtil;
+
 
 
 @Controller
 public class HomeController {
 
-	@RequestMapping("stb")
-	@ResponseBody
-	public HttpEntity<byte[]> stb() throws ParserConfigurationException, SAXException, IOException, TransformerException {
-		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		final DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new File("ressources/stb2.xml"));;
-	    DOMSource domSource = new DOMSource(doc);
-	    StringWriter writer = new StringWriter();
-	    StreamResult result = new StreamResult(writer);
-	    TransformerFactory tf = TransformerFactory.newInstance();
-	    Transformer transformer = tf.newTransformer();
-	    transformer.transform(domSource, result);
-	    String xml = writer.toString();
-	    byte[] documentBody = xml.getBytes();
-	    HttpHeaders header = new HttpHeaders();
-	    header.setContentType(new MediaType("application", "xml"));
-	    header.set(" ", "");
-	    header.setContentLength(documentBody.length);
-	    return new HttpEntity<byte[]>(documentBody, header);
-	   
+	public String getXmlFromObject(Stb stb){
+		try {
+			JAXBContext jaxbContext = JAXBContext.newInstance(Stb.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+			java.io.StringWriter sw = new StringWriter();
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			jaxbMarshaller.marshal(stb, sw);
+			return sw.toString();
+
+		}catch (JAXBException e) {
+			return e.toString();
+		}
+
+	}
+
+	public static void main(String[] args) throws DatatypeConfigurationException {
+		
+		Session session = HibernateUtil.currentSession();
+		System.out.println("Done");
+		session.beginTransaction();
+		
+		AdrType addr = new AdrType("c207 madrillet","Rouen",76800,"France");
+		Contact contact = new Contact("qette", "omar", addr);
+		Client client = new Client("test", contact);
+		GenderType genderType = new GenderType("Salim", true);
+		Equipe equipe = new Equipe(genderType,"Saidi");
+		List<Equipe> equipes = new ArrayList<>();
+		equipes.add(equipe);
+	
+		Fonctionnalite fonctionnalite = new Fonctionnalite(0, "hiuhiuh iuhiuh");
+		List<Fonctionnalite> fonctionnalites = new ArrayList<>();
+		fonctionnalites.add(fonctionnalite);
+		GregorianCalendar gregorianCalendar = new GregorianCalendar();
+		DatatypeFactory datatypeFactory = DatatypeFactory.newInstance();
+		XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
+		Stb stb = new Stb("stbTest","version 1", now , "desdeded",client,equipes,fonctionnalites,null);
+		session.save(stb);
+		
+		session.getTransaction().commit();
+		System.out.println("Done");
+		try {
+
+			File file = new File("E:\\file.xml");
+			JAXBContext jaxbContext = JAXBContext.newInstance(Stb.class);
+			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+			// output pretty printed
+			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+			jaxbMarshaller.marshal(stb, file);
+			jaxbMarshaller.marshal(stb, System.out);
+
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

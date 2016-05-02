@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lw2.tp6.model.Stb;
 import com.lw2.tp6.model.StbList;
-
 @Controller
 public class STBController {
 	
@@ -28,7 +27,7 @@ public class STBController {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
 
-		Stb stb = new Stb(String.valueOf(id),"0.1",dateFormat.format(date),"desced");
+		Stb stb = new Stb();
 		return stb;
 	}
 	
@@ -40,7 +39,7 @@ public class STBController {
 		Date date = new Date();
 		StbList stbList = new StbList();
 		for(int i =0;i<4;i++){
-			stbList.add(new Stb(String.valueOf(i),"0.1",dateFormat.format(date),"description de la Stb n°"+(String.valueOf(i)+1)));
+			stbList.add(new Stb());
 		}
 		return stbList;
 	}

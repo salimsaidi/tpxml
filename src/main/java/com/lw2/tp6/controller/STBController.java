@@ -43,7 +43,7 @@ public class STBController {
 		stbList.setStbs((ArrayList<Stb>) criteria.list());
 		ResumeList resumeList = new ResumeList();
 		for (Stb stb : stbList.getStbs()) {
-			resumeList.add(new Resume( stb.getTitre(), stb.getVersion(), stb.getDate() , stb.getDescription()));
+			resumeList.add(new Resume( stb.getStbId(),stb.getTitre(), stb.getVersion(), stb.getDate() , stb.getDescription()));
 		}
 		
 	    resumeList.setNbStb(stbList.getStbs().size());

@@ -6,9 +6,9 @@
 	<session-factory>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.username">usr1</property>
-		<property name="hibernate.connection.password">123456</property>
-		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernatedb</property>
+		<property name="hibernate.connection.username">olfcrwcopbojfg</property>
+		<property name="hibernate.connection.password">XAbbBjnuB3HxKj15LzpvZmUd9D</property>
+		<property name="hibernate.connection.url">jdbc:postgres://olfcrwcopbojfg:XAbbBjnuB3HxKj15LzpvZmUd9D@ec2-23-23-216-160.compute-1.amazonaws.com:5432/dc3vfqlnnc3o07</property>
 
 
 
@@ -16,7 +16,7 @@
 		<property name="show_sql">true</property>
 
 		<property name="format_sql">true</property>
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">create</property>
 
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name="connection.pool_size">1</property>

@@ -14,6 +14,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class Resume {
 	
 	@XmlElement(required = true)
+	protected Integer id;
+	@XmlElement(required = true)
 	protected String titre;
 	@XmlElement(required = true, defaultValue = "0.1")
 	protected String version;
@@ -27,12 +29,21 @@ public class Resume {
 	public Resume() {
 		super();
 	}
-	public Resume(String titre, String version, Date date, String description) {
+	public Resume(Integer id,String titre, String version, Date date, String description) {
 		super();
+		this.id = id;
 		this.titre = titre;
 		this.version = version;
 		this.date = date;
 		this.description = description;
+	}
+	
+	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	public String getTitre() {
 		return titre;

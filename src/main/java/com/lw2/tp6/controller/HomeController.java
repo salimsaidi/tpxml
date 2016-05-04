@@ -20,6 +20,7 @@ import com.lw2.tp6.model.AdrType;
 import com.lw2.tp6.model.Client;
 import com.lw2.tp6.model.Contact;
 import com.lw2.tp6.model.Equipe;
+import com.lw2.tp6.model.Exigence;
 import com.lw2.tp6.model.Fonctionnalite;
 import com.lw2.tp6.model.GenderType;
 import com.lw2.tp6.model.Stb;
@@ -49,7 +50,7 @@ public class HomeController {
 	public static void main(String[] args) throws DatatypeConfigurationException {
 		
 		Session session = HibernateUtil.currentSession();
-		System.out.println("Done");
+		System.out.println("Donehjgkjkkgjhgk");
 		session.beginTransaction();
 		
 		AdrType addr = new AdrType("c207 madrillet","Rouen",76800,"France");
@@ -59,8 +60,10 @@ public class HomeController {
 		Equipe equipe = new Equipe(genderType,"Saidi");
 		List<Equipe> equipes = new ArrayList<>();
 		equipes.add(equipe);
-	
-		Fonctionnalite fonctionnalite = new Fonctionnalite(0, "hiuhiuh iuhiuh");
+		List<Exigence> exigences = new ArrayList<>();
+		Exigence exigence = new Exigence("trrrr",5,"omar");
+		exigences.add(exigence);
+		Fonctionnalite fonctionnalite = new Fonctionnalite(0, "hiuhiuh iuhiuh",exigences);
 		List<Fonctionnalite> fonctionnalites = new ArrayList<>();
 		fonctionnalites.add(fonctionnalite);
 		GregorianCalendar gregorianCalendar = new GregorianCalendar();
@@ -68,7 +71,7 @@ public class HomeController {
 		XMLGregorianCalendar now = datatypeFactory.newXMLGregorianCalendar(gregorianCalendar);
 		Stb stb = new Stb("stbTest","version 1", now , "desdeded",client,equipes,fonctionnalites,null);
 		session.save(stb);
-		
+		System.out.println("Done33333");
 		session.getTransaction().commit();
 		System.out.println("Done");
 		try {
@@ -88,4 +91,7 @@ public class HomeController {
 		}
 
 	}
+	
+	
+	
 }

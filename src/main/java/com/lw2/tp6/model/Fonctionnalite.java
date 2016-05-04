@@ -16,19 +16,22 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+
 
 
 /**
@@ -74,42 +77,38 @@ public class Fonctionnalite {
 	protected int priorite;
 	@XmlElement(required = true)
 	protected String description;
-	@XmlElement(required = true)
+	@XmlTransient
+	private Long fonctionnaliteId ;
 	
-	private long fonctionnaliteId ;
-	private Stb stb;
-
+	@XmlElement(required = true)
+    protected List<Exigence> exigence;
 
 	public Fonctionnalite() {
 		super();
 	}
+	
+	
 
-	public Fonctionnalite(int priorite, String description) {
+	public Fonctionnalite(int priorite, String description, List<Exigence> exigence) {
 		super();
 		this.priorite = priorite;
 		this.description = description;
-
+		this.exigence = exigence;
 	}
 
+
+
 	@Id  
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="FONCTIONNALITE_ID", unique = true, nullable = false)
-	public long getFonctionnaliteId() {
+	public Long getFonctionnaliteId() {
 		return fonctionnaliteId;
 	}
 
-	public void setFonctionnaliteId(long fonctionnaliteId) {
+	public void setFonctionnaliteId(Long fonctionnaliteId) {
 		this.fonctionnaliteId = fonctionnaliteId;
 	}
 
-	@ManyToOne(cascade=CascadeType.ALL)  
-	public Stb getStb() {
-		return stb;
-	}
-
-	public void setStb(Stb stb) {
-		this.stb = stb;
-	}
 
 	/**
 	 * Gets the value of the priorite property.
@@ -175,29 +174,20 @@ public class Fonctionnalite {
 	 * 
 	 * 
 	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	 public List<Exigence> getExigence() {
+	        if (exigence == null) {
+	            exigence = new ArrayList<Exigence>();
+	        }
+	        return this.exigence;
+	    }
+	 
+	 
+
+	public void setExigence(List<Exigence> exigence) {
+		this.exigence = exigence;
+	}
 
 
-
-
-	/**
-	 * <p>Java class for anonymous complex type.
-	 * 
-	 * <p>The following schema fragment specifies the expected content contained within this class.
-	 * 
-	 * <pre>
-	 * &lt;complexType>
-	 *   &lt;complexContent>
-	 *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-	 *       &lt;all>
-	 *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
-	 *         &lt;element ref="{http://univ.fr/stb}priorite"/>
-	 *       &lt;/all>
-	 *       &lt;attribute name="identifiant" use="required" type="{http://www.w3.org/2001/XMLSchema}string" />
-	 *     &lt;/restriction>
-	 *   &lt;/complexContent>
-	 * &lt;/complexType>
-	 * </pre>
-	 * 
-	 * 
-	 */
+	
 }

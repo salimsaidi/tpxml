@@ -14,6 +14,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +23,7 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -60,11 +62,9 @@ public class AdrType {
     protected int codePostal;
     @XmlElement(name = "Pays", required = true)
     protected String pays;
-    private long adrTypeId;
-    @ManyToOne()
-    private Contact contact;
-    
-    
+    @XmlTransient
+    private Long adrTypeId;
+  
     public AdrType() {
   		super();
   	}
@@ -79,28 +79,20 @@ public class AdrType {
   	
 
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ADDR_ID", unique = true, nullable = false)
 
-    public long getAdrTypeId() {
+    public Long getAdrTypeId() {
 		return adrTypeId;
 	}
 
-	public void setAdrTypeId(long adrTypeId) {
+	public void setAdrTypeId(Long adrTypeId) {
 		this.adrTypeId = adrTypeId;
 	}
 	
 	
 
-	@OneToOne(cascade=CascadeType.ALL)  
-	@JoinColumn(name="CONTACT_ID") 
-	public Contact getContact() {
-		return contact;
-	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
-	}
+	
 
 	/**
      * Gets the value of the adresse property.

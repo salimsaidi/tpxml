@@ -15,6 +15,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -23,6 +24,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -59,11 +61,9 @@ public class Client {
 	protected String entite;
 	@XmlElement(namespace = "http://univ.fr/stb", required = true)
 	protected Contact contact;
-	@Id
-	@GeneratedValue
-	@Column(name="CLIENT_ID",  unique = true, nullable = false)
-	protected long clientId ;
-	private Stb stb;
+	@XmlTransient
+	protected Long clientId ;
+ 
 
 
 
@@ -78,28 +78,18 @@ public class Client {
 		super();
 	}
 
-
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "CLIENT_ID", unique = true, nullable = false)
-	public long getClientId() {
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="CLIENT_ID",  unique = true, nullable = false)
+	public Long getClientId() {
 		return clientId;
 	}
 
-	public void setClientId(long clinetId) {
+	public void setClientId(Long clientId) {
 		this.clientId = clientId;
 	}
 
 
-	@OneToOne(cascade=CascadeType.ALL)  
-	@JoinColumn(name="STB_ID") 
-	public Stb getStb() {
-		return stb;
-	}
-
-	public void setStb(Stb stb) {
-		this.stb = stb;
-	}
 
 	/**
 	 * Gets the value of the entite property.
@@ -114,6 +104,7 @@ public class Client {
 		return entite;
 	}
 
+	
 	/**
 	 * Sets the value of the entite property.
 	 * 
@@ -134,7 +125,7 @@ public class Client {
 	 *     {@link Contact }
 	 *     
 	 */
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.ALL)
+	@OneToOne( cascade = CascadeType.ALL)
 	public Contact getContact() {
 		return contact;
 	}

@@ -5,30 +5,27 @@
 // Generated on: 2016.04.28 at 03:58:12 PM CEST 
 //
 
-
 package com.lw2.tp6.model;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlValue;
 
-
 /**
- * <p>Java class for genderType complex type.
+ * <p>
+ * Java class for genderType complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="genderType">
@@ -43,11 +40,18 @@ import javax.xml.bind.annotation.XmlValue;
  * 
  */
 @Entity
-@Table(name="gender_type")
+@Table(name = "gender_type")
 @XmlAccessorType(XmlAccessType.NONE)
 public class GenderType {
 
-    public GenderType() {
+	@XmlValue
+	protected String value;
+	@XmlAttribute(name = "gender", required = true)
+	protected boolean gender;
+	@XmlTransient
+	private Long idGenderType;
+
+	public GenderType() {
 		super();
 	}
 
@@ -57,76 +61,54 @@ public class GenderType {
 		this.gender = gender;
 	}
 
-	@XmlValue
-    protected String value;
-    @XmlAttribute(name = "gender", required = true)
-    protected boolean gender;
-    
-    private long idGenderType;
-    
-    private Equipe equipe ;
-   
-    @Id
-	@GeneratedValue(strategy = IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "GENDER_ID", unique = true, nullable = false)
-    public long getIdGenderType() {
+	public Long getIdGenderType() {
 		return idGenderType;
 	}
 
-	public void setIdGenderType(long idGenderType) {
+	public void setIdGenderType(Long idGenderType) {
 		this.idGenderType = idGenderType;
 	}
 
-	@OneToOne(cascade=CascadeType.ALL)  
-	@JoinColumn(name="EQUIPE_ID") 
-	public Equipe getEquipe() {
-		return equipe;
-	}
-
-	public void setEquipe(Equipe equipe) {
-		this.equipe = equipe;
+	/**
+	 * Gets the value of the value property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	@Column(name = "VALUE")
+	public String getValue() {
+		return value;
 	}
 
 	/**
-     * Gets the value of the value property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-	@Column(name="VALUE")
-    public String getValue() {
-        return value;
-    }
+	 * Sets the value of the value property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setValue(String value) {
+		this.value = value;
+	}
 
-    /**
-     * Sets the value of the value property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setValue(String value) {
-        this.value = value;
-    }
+	/**
+	 * Gets the value of the gender property.
+	 * 
+	 */
+	@Column(name = "GENDER")
+	public boolean getGender() {
+		return gender;
+	}
 
-    /**
-     * Gets the value of the gender property.
-     * 
-     */
-    @Column(name="GENDER")
-    public boolean isGender() {
-        return gender;
-    }
-
-    /**
-     * Sets the value of the gender property.
-     * 
-     */
-    public void setGender(boolean value) {
-        this.gender = value;
-    }
+	/**
+	 * Sets the value of the gender property.
+	 * 
+	 */
+	public void setGender(boolean value) {
+		this.gender = value;
+	}
 
 }

@@ -5,7 +5,6 @@
 // Generated on: 2016.04.28 at 03:58:12 PM CEST 
 //
 
-
 package com.lw2.tp6.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -32,16 +31,18 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-
-
 /**
- * <p>Java class for anonymous complex type.
+ * <p>
+ * Java class for anonymous complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType>
@@ -66,34 +67,35 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 
 @Entity
-@Table(name = "stb" )
+@Table(name = "stb")
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "stb")
 public class Stb {
 
-    @XmlElement( required = true)
-    protected String titre;
-    @XmlElement(required = true, defaultValue = "0.1")
-    protected String version;
-    @XmlElement( required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar date;
-    @XmlElement( required = true)
-    protected String description;
-    @XmlElement(required = true)
-    protected Client client;
-    @XmlElement( required = true)
-    //@OneToMany(mappedBy ="stb", cascade=CascadeType.ALL)
-    protected List<Equipe> equipe;
-    @XmlElement( required = true)
-    protected List<Fonctionnalite> fonctionnalite;
-    @XmlElement()
-    protected List<String> commentaire;
-    
-    protected long stbId ;
-    
+	@XmlElement(required = true)
+	protected String titre;
+	@XmlElement(required = true, defaultValue = "0.1")
+	protected String version;
+	@XmlElement(required = true)
+	@XmlSchemaType(name = "date")
+	protected XMLGregorianCalendar date;
+	@XmlElement(required = true)
+	protected String description;
+	
+	@XmlElement(required = true)
+	protected Client client;
+	@XmlElement(required = true)
+	protected List<Equipe> equipe;
+	@XmlElement(required = true)
+	protected List<Fonctionnalite> fonctionnalite;
+	
+	
+	@XmlElement()
+	protected List<String> commentaire;
+	
+	protected Integer stbId;
 
-    public Stb(String titre, String version, XMLGregorianCalendar date, String description, Client client,
+	public Stb(String titre, String version, XMLGregorianCalendar date, String description, Client client,
 			List<Equipe> equipe, List<Fonctionnalite> fonctionnalite, List<String> commentaire) {
 		super();
 		this.titre = titre;
@@ -108,245 +110,230 @@ public class Stb {
 
 	public Stb() {
 		super();
-	}	
-	
-	
+	}
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 	@Column(name = "STB_ID", unique = true, nullable = false)
-	public long getStbId() {
+	public Integer getStbId() {
 		return stbId;
 	}
-
-	public void setStbId(long stbId) {
+	
+	public void setStbId(Integer stbId) {
 		this.stbId = stbId;
 	}
-	
+
 	/**
-     * Gets the value of the titre property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
+	 * Gets the value of the titre property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
 	@Column(name = "TITRE", nullable = false, length = 10)
-    public String getTitre() {
-        return titre;
-    }
+	public String getTitre() {
+		return titre;
+	}
 
 	/**
-     * Sets the value of the titre property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTitre(String value) {
-        this.titre = value;
-    }
+	 * Sets the value of the titre property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setTitre(String value) {
+		this.titre = value;
+	}
 
-    /**
-     * Gets the value of the version property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    @Column(name = "VERSION", nullable = false, length = 10)
-    public String getVersion() {
-        return version;
-    }
+	/**
+	 * Gets the value of the version property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
 
-    /**
-     * Sets the value of the version property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVersion(String value) {
-        this.version = value;
-    }
+	@Column(name = "VERSION", nullable = false, length = 10)
+	public String getVersion() {
+		return version;
+	}
 
-    /**
-     * Gets the value of the date property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    @Column(name = "DATE", unique = true, nullable = false, length = 10)
-    public Date getDate() {
-        return date.toGregorianCalendar().getTime();
-    }
+	/**
+	 * Sets the value of the version property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setVersion(String value) {
+		this.version = value;
+	}
 
-    /**
-     * Sets the value of the date property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDate(Date value) {
-    	GregorianCalendar gCalendar = new GregorianCalendar();
-        gCalendar.setTime(value);
-        try {
+	/**
+	 * Gets the value of the date property.
+	 * 
+	 * @return possible object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	@Column(name = "DATE", unique = true, nullable = false, length = 10)
+	
+	public Date getDate() {
+		return date.toGregorianCalendar().getTime();
+	}
+	
+
+	/**
+	 * Sets the value of the date property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link XMLGregorianCalendar }
+	 * 
+	 */
+	public void setDate(Date value) {
+		GregorianCalendar gCalendar = new GregorianCalendar();
+		gCalendar.setTime(value);
+		try {
 			this.date = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCalendar);
 		} catch (DatatypeConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+	}
 
-    /**
-     * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    @Column(name = "DESCRIPTION", unique = true, nullable = false, length = 10)
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Gets the value of the description property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	@Column(name = "DESCRIPTION")
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setDescription(String value) {
-        this.description = value;
-    }
+	/**
+	 * Sets the value of the description property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setDescription(String value) {
+		this.description = value;
+	}
 
-    /**
-     * Gets the value of the client property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Client }
-     *     
-     */
+	/**
+	 * Gets the value of the client property.
+	 * 
+	 * @return possible object is {@link Client }
+	 * 
+	 */
+	@OneToOne(cascade = CascadeType.ALL)
+	public Client getClient() {
+		return client;
+	}
 
+	/**
+	 * Sets the value of the client property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Client }
+	 * 
+	 */
+	public void setClient(Client value) {
+		this.client = value;
+	}
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "stb", cascade = CascadeType.ALL)
-    public Client getClient() {
-        return client;
-    }
+	/**
+	 * Gets the value of the equipe property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the equipe property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getEquipe().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link Equipe }
+	 * 
+	 * 
+	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	public List<Equipe> getEquipe() {
+		if (equipe == null) {
+			equipe = new ArrayList<Equipe>();
+		}
+		return this.equipe;
+	}
 
-    /**
-     * Sets the value of the client property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Client }
-     *     
-     */
-    public void setClient(Client value) {
-        this.client = value;
-    }
+	/**
+	 * Gets the value of the fonctionnalite property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the fonctionnalite property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getFonctionnalite().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link Fonctionnalite }
+	 * 
+	 * 
+	 */
+	@OneToMany(cascade = CascadeType.ALL)
+	public List<Fonctionnalite> getFonctionnalite() {
+		if (fonctionnalite == null) {
+			fonctionnalite = new ArrayList<Fonctionnalite>();
+		}
+		return this.fonctionnalite;
+	}
 
-    /**
-     * Gets the value of the equipe property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the equipe property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getEquipe().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Equipe }
-     * 
-     * 
-     */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stb" ,cascade=CascadeType.ALL)
-    public List<Equipe> getEquipe() {
-        if (equipe == null) {
-            equipe = new ArrayList<Equipe>();
-        }
-        return this.equipe;
-    }
-
-    /**
-     * Gets the value of the fonctionnalite property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the fonctionnalite property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getFonctionnalite().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Fonctionnalite }
-     * 
-     * 
-     */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "stb" ,cascade=CascadeType.ALL)
-    public List<Fonctionnalite> getFonctionnalite() {
-        if (fonctionnalite == null) {
-            fonctionnalite = new ArrayList<Fonctionnalite>();
-        }
-        return this.fonctionnalite;
-    }
-
-    /**
-     * Gets the value of the commentaire property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the commentaire property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCommentaire().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    @ElementCollection
-    @CollectionTable(name="commentaire", joinColumns=@JoinColumn(name="STB_ID"))
-    @Column(name="commentaire")
-    public List<String> getCommentaire() {
-        if (commentaire == null) {
-            commentaire = new ArrayList<String>();
-        }
-        return this.commentaire;
-    }
+	/**
+	 * Gets the value of the commentaire property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the commentaire property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getCommentaire().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link String }
+	 * 
+	 * 
+	 */
+	@ElementCollection
+	@CollectionTable(name = "commentaire", joinColumns = @JoinColumn(name = "STB_ID"))
+	@Column(name = "commentaire")
+	public List<String> getCommentaire() {
+		if (commentaire == null) {
+			commentaire = new ArrayList<String>();
+		}
+		return this.commentaire;
+	}
 
 	public void setDate(XMLGregorianCalendar date) {
 		this.date = date;
@@ -363,7 +350,5 @@ public class Stb {
 	public void setCommentaire(List<String> commentaire) {
 		this.commentaire = commentaire;
 	}
-    
-    
 
 }

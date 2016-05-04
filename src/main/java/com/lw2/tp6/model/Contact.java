@@ -15,6 +15,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -24,6 +25,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -58,54 +60,46 @@ import org.hibernate.annotations.Parameter;
 @XmlRootElement(name = "contact")
 public class Contact {
 
-	public Contact(String nom, String prenom, AdrType adress) {
-		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.adress = adress;
-	}
-
 	@XmlElement(required = true)
 	protected String nom;
 	@XmlElement(required = true)
 	protected String prenom;
 	@XmlElement(required = true)
 	protected AdrType adress;
-
-	private Client client;
-
-	protected long contactId ;
+	@XmlTransient
+	protected Long contactId ;
+	
+	
+	
+	public Contact(String nom, String prenom, AdrType adress) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.adress = adress;
+	}
 	
 	
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "CONTACT_ID", unique = true, nullable = false)
-	public long getContactId() {
+	public Long getContactId() {
 		return contactId;
 	}
 
 
 
-	public void setContactId(long contactId) {
+	public void setContactId(Long contactId) {
 		this.contactId = contactId;
 	}
 
 
 
-	public void setStbId(Integer contactId) {
+	public void setStbId(Long contactId) {
 		this.contactId = contactId;
 	}
 
 
-	@OneToOne(cascade=CascadeType.ALL)  
-	@JoinColumn(name="CLIENT_ID") 
-	public Client getClient() {
-		return client;
-	}
 
-	public void setClient(Client client) {
-		this.client = client;
-	}
 
 	/**
 	 * Gets the value of the nom property.
@@ -165,7 +159,7 @@ public class Contact {
 	 *     {@link AdrType }
 	 *     
 	 */
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "contact", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	public AdrType getAdress() {
 		return adress;
 	}

@@ -24,6 +24,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -52,13 +53,17 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlRootElement(name = "equipe")
 public class Equipe {
+	
 
 	@XmlElement(required = true)
+	
 	protected GenderType nom;
 	@XmlElement(required = true)
+	
 	protected String prenom;
-	private long idEquipe ;
-	private Stb stb;
+	@XmlTransient
+	private Long idEquipe ;
+
 
 
 	public Equipe() {
@@ -72,28 +77,19 @@ public class Equipe {
 	}
 
 	@Id  
-	@GeneratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "EQUIPE_ID", unique = true, nullable = false)
-	public long getIdEquipe()  
+	public Long getIdEquipe()  
 	{  
 		return idEquipe;  
 	} 
 	
 	
-	public void setIdEquipe(long idEquipe)  
+	public void setIdEquipe(Long idEquipe)  
 	{  
 		this.idEquipe = idEquipe;  
 	}  
 
-
-	@ManyToOne(cascade=CascadeType.ALL)  
-	public Stb getStb() {
-		return stb;
-	}
-
-	public void setStb(Stb stb) {
-		this.stb = stb;
-	}
 
 	/**
 	 * Gets the value of the nom property.
@@ -103,7 +99,7 @@ public class Equipe {
 	 *     {@link GenderType }
 	 *     
 	 */
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "equipe", cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	public GenderType getNom() {
 		return nom;
 	}

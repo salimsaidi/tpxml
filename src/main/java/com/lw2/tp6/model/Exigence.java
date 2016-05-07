@@ -44,7 +44,7 @@ public class Exigence {
 
     @XmlElement(required = true)
     protected String description;
-    @XmlElement(namespace = "http://univ.fr/stb")
+    @XmlElement
     protected int priorite;
     @XmlAttribute(name = "identifiant", required = true)
     protected String identifiant;

@@ -23,6 +23,10 @@ public class ResumeList {
 		public List<Resume> getResume() {
 			return resumes;
 		}
+		
+		public List<Resume> getResumes() {
+			return resumes;
+		}
 
 		@XmlElement(required = true,name = "resume")
 		public void setResume(ArrayList<Resume> resume) {

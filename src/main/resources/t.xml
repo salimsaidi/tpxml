@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<stb xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="t.xsd">
+	<titre>STB titre</titre>
+	<version>1</version>
+	<date>2016-05-12</date>
+	<description>Description de la stb</description>
+	<client>
+		<entite>client 1</entite>
+		<contact>
+			<nom>nom client</nom>
+			<prenom>prénom client</prenom>
+			<adress>
+				<adresse>adresse client</adresse>
+				<ville>ville client</ville>
+				<codePostal>15000</codePostal>
+				<Pays>France</Pays>
+			</adress>
+		</contact>
+	</client>
+	<equipe>
+		<nom gender="true">Qette</nom>
+		<prenom>Omar</prenom>
+	</equipe>
+	<equipe>
+		<nom gender="true">Saidi</nom>
+		<prenom>Salim</prenom>
+	</equipe>
+	<fonctionnalite>
+		<description>Description fonctionnalité 2</description>
+		<priorite>5</priorite>
+		<exigence identifiant="3">
+			<description>Description ex3</description>
+			<priorite>5</priorite>
+		</exigence>
+		<exigence identifiant="9">
+			<description>Description ex5</description>
+			<priorite>8</priorite>
+		</exigence>
+	</fonctionnalite>
+	<fonctionnalite>
+		<description>Description Fonctionnalite 1</description>
+		<priorite>1</priorite>
+		<exigence identifiant="1">
+			<description>description ex1</description>
+			<priorite>4</priorite>
+		</exigence>
+		<exigence identifiant="2">
+			<description>description ex2</description>
+			<priorite>1</priorite>
+		</exigence>
+	</fonctionnalite>
+	<commentaire>Commentaire 2</commentaire>
+	<commentaire>Commentaire 1</commentaire>
+</stb>

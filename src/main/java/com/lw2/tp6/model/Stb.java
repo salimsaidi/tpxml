@@ -78,7 +78,7 @@ public class Stb {
 	protected String version;
 	@XmlElement(required = true)
 	@XmlSchemaType(name = "date")
-	protected XMLGregorianCalendar date;
+	protected Date date;
 	@XmlElement(required = true)
 	protected String description;
 	
@@ -95,7 +95,7 @@ public class Stb {
 	
 	protected Integer stbId;
 
-	public Stb(String titre, String version, XMLGregorianCalendar date, String description, Client client,
+	public Stb(String titre, String version, Date date, String description, Client client,
 			List<Equipe> equipe, List<Fonctionnalite> fonctionnalite, List<String> commentaire) {
 		super();
 		this.titre = titre;
@@ -173,10 +173,10 @@ public class Stb {
 	 * @return possible object is {@link XMLGregorianCalendar }
 	 * 
 	 */
-	@Column(name = "DATE", unique = true, nullable = false, length = 10)
+	@Column(name = "DATE", nullable = false, length = 10)
 	
 	public Date getDate() {
-		return date.toGregorianCalendar().getTime();
+		return date;
 	}
 	
 
@@ -188,14 +188,8 @@ public class Stb {
 	 * 
 	 */
 	public void setDate(Date value) {
-		GregorianCalendar gCalendar = new GregorianCalendar();
-		gCalendar.setTime(value);
-		try {
-			this.date = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCalendar);
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			this.date = value;
+	
 	}
 
 	/**
@@ -335,9 +329,6 @@ public class Stb {
 		return this.commentaire;
 	}
 
-	public void setDate(XMLGregorianCalendar date) {
-		this.date = date;
-	}
 
 	public void setEquipe(List<Equipe> equipe) {
 		this.equipe = equipe;

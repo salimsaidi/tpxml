@@ -59,7 +59,7 @@ public class Client {
 
 	@XmlElement(required = true)
 	protected String entite;
-	@XmlElement(namespace = "http://univ.fr/stb", required = true)
+	@XmlElement(required = true)
 	protected Contact contact;
 	@XmlTransient
 	protected Long clientId ;

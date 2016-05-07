@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lw2.tp6.model.Membres;
 import com.lw2.tp6.model.Resume;
 import com.lw2.tp6.model.ResumeList;
 import com.lw2.tp6.model.Stb;
@@ -19,6 +20,18 @@ import com.lw2.tp6.model.StbList;
 import com.lw2.tp6.persistence.HibernateUtil;
 @Controller
 public class STBController {
+	
+	
+	@RequestMapping(value ="/", method = RequestMethod.GET)
+	@ResponseBody
+	public Membres acceuil() {
+		Session session = HibernateUtil.currentSession();
+		Criteria criteria = session.createCriteria(Stb.class);
+		StbList stbList = new StbList();	
+		stbList.setStbs((ArrayList<Stb>) criteria.list());
+		Membres m = new Membres("QETTE Omar (TP4)", "SAIDI Mohamed Salim (TP5)",stbList.getStbs().size() );
+		return m;
+	}
 	
 	@RequestMapping("resume/{id}")
 	@ResponseBody
